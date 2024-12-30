@@ -1,9 +1,14 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Basic Environment setup
+env_path = Path(BASE_DIR) / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -68,8 +73,12 @@ WSGI_APPLICATION = 'Stardaze.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("STARDAZE_DB", ""),
+        'USER': os.getenv("STARDAZE_USER", ""),
+        'PASSWORD': os.getenv("STARDAZE_PASSWD", ""),
+        'HOST': os.getenv("STARDAZE_HOST", ""),
+        'PORT': 5432,
     }
 }
 
