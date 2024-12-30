@@ -1,0 +1,9 @@
+
+rpython:S1542"NRename function "Homepage" to match the regular expression ^[a-z_][a-z0-9_]*$.(ãÅ¥äûÿÿÿÿ8Öˆ‹Á2
+ppython:S1542"QRename function "ContactPage" to match the regular expression ^[a-z_][a-z0-9_]*$.(…Èğ¦8×ˆ‹Á2
+spython:S1542"ORename function "AboutPage" to match the regular expression ^[a-z_][a-z0-9_]*$.(ñè¤µøÿÿÿÿ8×ˆ‹Á2
+ppython:S1542!"QRename function "PrivacyPage" to match the regular expression ^[a-z_][a-z0-9_]*$.(È…İĞ8×ˆ‹Á2
+python:S1542%"[Rename function "DestinationDetailView" to match the regular expression ^[a-z_][a-z0-9_]*$.(ååê ıÿÿÿÿ8×ˆ‹Á2
+Kpython:S1172/",Remove the unused function parameter "slug".(òÛ‹õ8×ˆ‹Á2
+Npython:S1172/"/Remove the unused function parameter "request".(òÛ‹õ8×ˆ‹Á2
+tpython:S1542/"URename function "HotelDetailView" to match the regular expression ^[a-z_][a-z0-9_]*$.(òÛ‹õ8×ˆ‹Á2

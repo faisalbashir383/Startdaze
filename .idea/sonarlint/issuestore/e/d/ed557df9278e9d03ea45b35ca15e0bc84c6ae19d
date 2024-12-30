@@ -1,0 +1,41 @@
+
+wjavascript:S3776Y"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(·Ø ¼8í±‘°Á2
+Yjavascript:S1481ª"5Remove the declaration of the unused 'time' variable.(õº‡İ8ï±‘°Á2
+cjavascript:S4030Á"?Either use this collection's contents or remove the collection.(•·›º8ï±‘°Á2
+cjavascript:S4030å"?Either use this collection's contents or remove the collection.(•·›º8ï±‘°Á2
+\javascript:S1481Œ"8Remove the declaration of the unused 'myChart' variable.(¨Ã£ş8ï±‘°Á2
+Yjavascript:S1854Œ"5Remove this useless assignment to variable "myChart".(¨Ã£ş8ï±‘°Á2
+wjavascript:S3776¯"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(›ôÎ8ï±‘°Á2
+ƒjavascript:S1848Á"_Either remove this useless object instantiation of "markerClusterer.MarkerClusterer" or use it.(ƒØñı8ï±‘°Á2
+ƒjavascript:S1848ı"_Either remove this useless object instantiation of "markerClusterer.MarkerClusterer" or use it.(ƒØñı8ï±‘°Á2
+ƒjavascript:S1848¨"_Either remove this useless object instantiation of "markerClusterer.MarkerClusterer" or use it.(ƒØñı8ï±‘°Á2
+}javascript:S3776«"TRefactor this function to reduce its Cognitive Complexity from 33 to the 15 allowed.(ìó™¬ûÿÿÿÿ8ğ±‘°Á2
+pjavascript:S4138°"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(åüá8ñ±‘°Á2
+pjavascript:S4138³"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(×°â8ñ±‘°Á2
+pjavascript:S4138"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(±™½“8ñ±‘°Á2
+}javascript:S3776¨"TRefactor this function to reduce its Cognitive Complexity from 25 to the 15 allowed.(ßÑìÈşÿÿÿÿ8ñ±‘°Á2
+pjavascript:S4138­"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(£¼ÏÓ8ñ±‘°Á2
+ujavascript:S4138Å"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(À—•çÿÿÿÿÿ8ò±‘°Á2
+pjavascript:S3500ƒ"LCorrect this attempt to modify "counterVal" or use "let" in its declaration.(ÑË‚Ã8ò±‘°Á2
+pjavascript:S3500„"LCorrect this attempt to modify "counterVal" or use "let" in its declaration.(¬™â’8ò±‘°Á2
+xjavascript:S3776ç"TRefactor this function to reduce its Cognitive Complexity from 27 to the 15 allowed.(ôÉß™8ò±‘°Á2
+xjavascript:S3776à	"TRefactor this function to reduce its Cognitive Complexity from 31 to the 15 allowed.(æÅÛ»8ò±‘°Á2
+pjavascript:S4138ä	"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(ê‘’¾8ò±‘°Á2
+jjavascript:S1848œ
+"FEither remove this useless object instantiation of "Swiper" or use it.(äÿ¼8ò±‘°Á2
+:javascript:S1534µ
+"Duplicate name 'lazy'.(ÎÁëÄ8ò±‘°Á2
+ojavascript:S1848Ş
+"FEither remove this useless object instantiation of "Swiper" or use it.(è˜îÿÿÿÿÿ8ò±‘°Á2
+jjavascript:S1848‘"FEither remove this useless object instantiation of "Swiper" or use it.(üŞ»ª8ò±‘°Á2
+jjavascript:S1848ß"FEither remove this useless object instantiation of "Swiper" or use it.(Øù“È8ò±‘°Á2
+jjavascript:S1848é"FEither remove this useless object instantiation of "Swiper" or use it.(»†8ò±‘°Á2
+ojavascript:S1848÷"FEither remove this useless object instantiation of "Swiper" or use it.(ùãáûÿÿÿÿ8ò±‘°Á2
+ojavascript:S1848…"FEither remove this useless object instantiation of "Swiper" or use it.(à³¤Äüÿÿÿÿ8ò±‘°Á2
+qjavascript:S1848›"HEither remove this useless object instantiation of "LazyLoad" or use it.(¤ïÓ¹ıÿÿÿÿ8ó±‘°Á2
+xjavascript:S3776°"TRefactor this function to reduce its Cognitive Complexity from 19 to the 15 allowed.(ø¾ÜŸ8ó±‘°Á2
+}javascript:S3776„"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(Ğˆöîúÿÿÿÿ8ó±‘°Á2
+_javascript:S930µ"7This function expects 3 arguments, but 4 were provided.(ÊÉŞÿÿÿÿÿ8ó±‘°Á2
+ojavascript:S1848’"FEither remove this useless object instantiation of "Swiper" or use it.(Äÿ€İüÿÿÿÿ8ó±‘°Á2
+}javascript:S3776§"TRefactor this function to reduce its Cognitive Complexity from 26 to the 15 allowed.(šÄ†ıÿÿÿÿ8ó±‘°Á2
+}javascript:S3776ì"TRefactor this function to reduce its Cognitive Complexity from 26 to the 15 allowed.(”ÛÇÓøÿÿÿÿ8ó±‘°Á2
