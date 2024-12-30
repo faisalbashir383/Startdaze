@@ -1,0 +1,639 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+    {% block navbarhome %}
+        {% include  'navbarhome.html' %}
+    {% endblock %}
+
+    <section data-anim-wrap class="masthead -type-7">
+      <div class="masthead-slider js-masthead-slider-7">
+        <div class="swiper-wrapper">
+          {% for slider in sliders %}
+          <div class="swiper-slide">
+            <div class="row justify-center text-center">
+              <div class="col-auto">
+                <div class="masthead__content">
+                  <div class="masthead__bg">
+                    <img src="/media/{{slider.image}}" alt="image">
+                  </div>
+
+                  <div data-anim-child="slide-up delay-1" class="text-white swiper_text_small">
+                    {{slider.small_text}}
+                  </div>
+
+                  <h1 data-anim-child="slide-up delay-2" class="swiper_text_big text-60 lg:text-40 md:text-30 text-white">
+                    {{slider.large_text}}
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        <div class="masthead-slider__nav -prev js-prev">
+          <button class="button -outline-white text-white size-50 rounded-full">
+            <i class="icon-arrow-left"></i>
+          </button>
+        </div>
+
+        <div class="masthead-slider__nav -next js-next">
+          <button class="button -outline-white text-white size-50 rounded-full">
+            <i class="icon-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div data-anim-child="fade delay-3" class="mainSearch -w-900 bg-white px-20 py-20 lg:px-20 lg:pt-5 lg:pb-20 rounded-100 shadow-2 mt-40">
+        <div class="button-grid items-center">
+
+          <div class="searchMenu-loc px-30 lg:py-20 lg:px-0 js-form-dd js-liverSearch">
+
+            <div data-x-dd-click="searchMenu-loc">
+              <h4 class="text-15 fw-500 ls-2 lh-16">Location</h4>
+
+              <div class="text-15 text-light-1 ls-2 lh-16">
+                <input autocomplete="off" type="search" placeholder="Where are you going?" class="js-search js-dd-focus" />
+              </div>
+            </div>
+
+
+            <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
+              <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
+                <div class="y-gap-5 js-results">
+
+                  {% for category in destinations_categories %}
+                  <div>
+                    <button class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option">
+                      <div class="d-flex">
+                        <div class="icon-location-2 text-light-1 text-20 pt-4"></div>
+                        <div class="ml-10">
+                          <div class="text-15 lh-12 fw-500 js-search-option-target">{{category.name}}</div>
+                          <div class="text-14 lh-12 text-light-1 mt-5">{% for destination in category.destinations.all %}{{destination.name}},{% endfor %}</div>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar js-calendar-el">
+
+            <div data-x-dd-click="searchMenu-date">
+              <h4 class="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
+
+              <div class="capitalize text-15 text-light-1 ls-2 lh-16">
+                <span class="js-first-date">Wed 2 Mar</span>
+                -
+                <span class="js-last-date">Fri 11 Apr</span>
+              </div>
+            </div>
+
+
+            <div class="searchMenu-date__field shadow-2" data-x-dd="searchMenu-date" data-x-dd-toggle="-is-active">
+              <div class="bg-white px-30 py-30 rounded-4">
+                <div class="elCalendar js-calendar-el-calendar"></div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="searchMenu-guests px-30 lg:py-20 lg:px-0 js-form-dd js-form-counters">
+
+            <div data-x-dd-click="searchMenu-guests">
+              <h4 class="text-15 fw-500 ls-2 lh-16">Guest</h4>
+
+              <div class="text-15 text-light-1 ls-2 lh-16">
+                <span class="js-count-adult">2</span> adults
+                -
+                <span class="js-count-child">1</span> childeren
+                -
+                <span class="js-count-room">1</span> room
+              </div>
+            </div>
+
+
+            <div class="searchMenu-guests__field shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
+              <div class="bg-white px-30 py-30 rounded-4">
+                <div class="row y-gap-10 justify-between items-center">
+                  <div class="col-auto">
+                    <div class="text-15 fw-500">Adults</div>
+                  </div>
+
+                  <div class="col-auto">
+                    <div class="d-flex items-center js-counter" data-value-change=".js-count-adult">
+                      <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                        <i class="icon-minus text-12"></i>
+                      </button>
+
+                      <div class="flex-center size-20 ml-15 mr-15">
+                        <div class="text-15 js-count">2</div>
+                      </div>
+
+                      <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                        <i class="icon-plus text-12"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="border-top-light mt-24 mb-24"></div>
+
+                <div class="row y-gap-10 justify-between items-center">
+                  <div class="col-auto">
+                    <div class="text-15 lh-12 fw-500">Children</div>
+                    <div class="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
+                  </div>
+
+                  <div class="col-auto">
+                    <div class="d-flex items-center js-counter" data-value-change=".js-count-child">
+                      <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                        <i class="icon-minus text-12"></i>
+                      </button>
+
+                      <div class="flex-center size-20 ml-15 mr-15">
+                        <div class="text-15 js-count">1</div>
+                      </div>
+
+                      <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                        <i class="icon-plus text-12"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="border-top-light mt-24 mb-24"></div>
+
+                <div class="row y-gap-10 justify-between items-center">
+                  <div class="col-auto">
+                    <div class="text-15 fw-500">Rooms</div>
+                  </div>
+
+                  <div class="col-auto">
+                    <div class="d-flex items-center js-counter" data-value-change=".js-count-room">
+                      <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-down">
+                        <i class="icon-minus text-12"></i>
+                      </button>
+
+                      <div class="flex-center size-20 ml-15 mr-15">
+                        <div class="text-15 js-count">1</div>
+                      </div>
+
+                      <button class="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up">
+                        <i class="icon-plus text-12"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="button-item">
+            <button class="mainSearch__submit button -blue-1 py-20 px-35 col-12 rounded-100 bg-dark-4 text-white">
+              <i class="icon-search text-20 mr-10"></i>
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <br><br>
+    <section class="layout-pt-lg layout-pb-md">
+      <div class="container">
+        <div class="row y-gap-30 justify-between items-center">
+          <div class="col-xl-5 col-lg-6">
+            <h2 class="text-30 fw-600">Stardaze Tour & Travel: Your Gateway to Unforgettable Journeys</h2>
+            <p class="mt-40 lg:mt-20">
+              At Stardaze, we believe every journey should be an adventure—an opportunity to discover new places,
+              connect with diverse cultures, and create lasting memories. As a world-leading tour and travel
+              company, our mission is to make your travel dreams a reality by offering unparalleled service,
+              personalized itineraries, and a commitment to sustainability.
+            </p>
+
+            <div class="d-inline-block mt-40 lg:mt-20">
+
+              <a href="{% url 'aboutPage' %}" class="button -md -blue-1 bg-dark-1 text-white">
+                Learn More <div class="icon-arrow-top-right ml-15"></div>
+              </a>
+
+            </div>
+          </div>
+
+          <div class="col-xl-5 col-lg-6">
+            <div class="shadow-4">
+              <div class="row border-center">
+
+                <div class="col-sm-6">
+                  <div class="py-60 sm:py-30 text-center">
+                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">30+</div>
+                    <div class="text-14 lh-14 text-light-1 mt-10">Destinations</div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="py-60 sm:py-30 text-center">
+                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">20+</div>
+                    <div class="text-14 lh-14 text-light-1 mt-10">Activities</div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="py-60 sm:py-30 text-center">
+                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">1k+</div>
+                    <div class="text-14 lh-14 text-light-1 mt-10">Happy customers</div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="py-60 sm:py-30 text-center">
+                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">100+</div>
+                    <div class="text-14 lh-14 text-light-1 mt-10">Hotels</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout-pt-md layout-pb-md">
+      <div data-anim-wrap class="container">
+        <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Top Destinations</h2>
+              <p class="sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row y-gap-40 justify-between pt-40 sm:pt-20">
+          {% for destination in top_destinations %}
+            <div data-anim-child="slide-up delay-{{ forloop.counter }}" class="{% if forloop.counter == 2 or forloop.counter == 4 %}col-xl-6{% else %}col-xl-3{% endif %} col-md-4 col-sm-6">
+              <a href="{% url 'DestinationDetailView' destination.slug %}" class="citiesCard -type-3 d-block rounded-4 {% if forloop.counter == 2 or forloop.counter == 4 %} h-full {% else %}{% endif %}">
+                <div class="citiesCard__image {% if forloop.counter == 2 or forloop.counter == 4 %} {% else %}ratio ratio-1:1{% endif %}">
+                  {% if destination.main_image %}
+                    <img class="img-ratio js-lazy" src="{{ destination.main_image.url }}" alt="{{ destination.name }}">
+                  {% else %}
+                    <img class="img-ratio js-lazy" src="{% static 'img/placeholder.png' %}" alt="{{ destination.name }}">
+                  {% endif %}
+                </div>
+                <div class="citiesCard__content px-30 py-30">
+                  <h4 class="text-26 fw-600 text-white">{{ destination.name }}</h4>
+                  <div class="text-15 text-white">
+                    {{ destination.total_trips }} Total Trips
+                  </div>
+                </div>
+              </a>
+
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+
+<!--<section class="layout-pt-md layout-pb-md">-->
+<!--      <div data-anim-wrap class="container">-->
+<!--        <div data-anim-child="slide-up delay-1" class="row justify-center text-center">-->
+<!--          <div class="col-auto">-->
+<!--            <div class="sectionTitle -md">-->
+<!--              <h2 class="sectionTitle__title">Top Destinations</h2>-->
+<!--              <p class=" sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="row y-gap-40 justify-between pt-40 sm:pt-20">-->
+
+<!--          <div data-anim-child="slide-up delay-3" class="col-xl-3 col-md-4 col-sm-6">-->
+
+<!--            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">-->
+<!--              <div class="citiesCard__image ratio ratio-1:1">-->
+<!--                <img class="img-ratio js-lazy" src="#" data-src="https://images.unsplash.com/photo-1683557027360-3011046b22bf?q=80&w=1551&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">-->
+<!--              </div>-->
+
+<!--              <div class="citiesCard__content px-30 py-30">-->
+<!--                <h4 class="text-26 fw-600 text-white">Srinagar</h4>-->
+<!--                <div class="text-15 text-white">1,714 properties</div>-->
+<!--              </div>-->
+<!--            </a>-->
+
+<!--          </div>-->
+
+<!--          <div data-anim-child="slide-up delay-4" class="col-xl-6 col-md-4 col-sm-6">-->
+
+<!--            <a href="#" class="citiesCard -type-3 d-block rounded-4 h-full">-->
+<!--              <div class="citiesCard__image ">-->
+<!--                <img class="img-ratio js-lazy" src="#" data-src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">-->
+<!--              </div>-->
+
+<!--              <div class="citiesCard__content px-30 py-30">-->
+<!--                <h4 class="text-26 fw-600 text-white">Sonmarg</h4>-->
+<!--                <div class="text-15 text-white">1,714 properties</div>-->
+<!--              </div>-->
+<!--            </a>-->
+
+<!--          </div>-->
+
+<!--          <div data-anim-child="slide-up delay-5" class="col-xl-3 col-md-4 col-sm-6">-->
+
+<!--            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">-->
+<!--              <div class="citiesCard__image ratio ratio-1:1">-->
+<!--                <img class="img-ratio js-lazy" src="#" data-src="https://images.unsplash.com/photo-1649794759593-ad80231b7b7c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">-->
+<!--              </div>-->
+
+<!--              <div class="citiesCard__content px-30 py-30">-->
+<!--                <h4 class="text-26 fw-600 text-white">Gulmarg</h4>-->
+<!--                <div class="text-15 text-white">1,714 properties</div>-->
+<!--              </div>-->
+<!--            </a>-->
+
+<!--          </div>-->
+
+<!--          <div data-anim-child="slide-up delay-6" class="col-xl-6 col-md-4 col-sm-6">-->
+
+<!--            <a href="#" class="citiesCard -type-3 d-block rounded-4 h-full">-->
+<!--              <div class="citiesCard__image ">-->
+<!--                <img class="img-ratio js-lazy" src="#" data-src="https://plus.unsplash.com/premium_photo-1661962707694-3420cb435e03?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">-->
+<!--              </div>-->
+
+<!--              <div class="citiesCard__content px-30 py-30">-->
+<!--                <h4 class="text-26 fw-600 text-white">Ladakh</h4>-->
+<!--                <div class="text-15 text-white">1,714 properties</div>-->
+<!--              </div>-->
+<!--            </a>-->
+
+<!--          </div>-->
+
+<!--          <div data-anim-child="slide-up delay-7" class="col-xl-3 col-md-4 col-sm-6">-->
+
+<!--            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">-->
+<!--              <div class="citiesCard__image ratio ratio-1:1">-->
+<!--                <img class="img-ratio js-lazy" src="#" data-src="https://images.unsplash.com/photo-1660566707824-2b8f9840ff22?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">-->
+<!--              </div>-->
+
+<!--              <div class="citiesCard__content px-30 py-30">-->
+<!--                <h4 class="text-26 fw-600 text-white">Kargil</h4>-->
+<!--                <div class="text-15 text-white">1,714 properties</div>-->
+<!--              </div>-->
+<!--            </a>-->
+
+<!--          </div>-->
+
+<!--          <div data-anim-child="slide-up delay-8" class="col-xl-3 col-md-4 col-sm-6">-->
+
+<!--            <a href="#" class="citiesCard -type-3 d-block rounded-4 ">-->
+<!--              <div class="citiesCard__image ratio ratio-1:1">-->
+<!--                <img class="img-ratio js-lazy" src="#" data-src="https://images.unsplash.com/photo-1564538334898-ff3daf505dca?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">-->
+<!--              </div>-->
+
+<!--              <div class="citiesCard__content px-30 py-30">-->
+<!--                <h4 class="text-26 fw-600 text-white">Pehalgam</h4>-->
+<!--                <div class="text-15 text-white">1,714 properties</div>-->
+<!--              </div>-->
+<!--            </a>-->
+
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+    <section class="layout-pt-md layout-pb-lg">
+      <div data-anim-wrap class="container">
+        <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Popular Hotels</h2>
+            </div>
+          </div>
+        </div>
+
+        <div data-anim-child="slide-up delay-2" class="tabs -pills-2 pt-40 js-tabs">
+          <div class="tabs__controls row x-gap-15 justify-center js-tabs-controls">
+
+            {% for cat in destinations_categories %}
+              <div class="col-auto">
+                <button
+                  class="tabs__button text-14 fw-500 px-20 py-10 rounded-4 bg-light-2 js-tabs-button
+                         {% if forloop.first %}is-tab-el-active{% endif %}"
+                  data-tab-target=".-tab-item-{{ cat.slug }}"
+                >
+                  {{ cat.name }}
+                </button>
+              </div>
+            {% endfor %}
+          </div>
+            <!-- Tab Contents -->
+            <div class="tabs__content pt-40 js-tabs-content">
+
+              {% for cat in destinations_categories %}
+                <!-- Each pane corresponds to each category -->
+                <div class="tabs__pane -tab-item-{{ forloop.counter }} {% if forloop.first %}is-tab-el-active{% endif %}">
+                  <div class="row y-gap-30">
+
+                    {# Loop over all hotels in this category #}
+                    {% for hotel in cat.hotels.all %}
+                      <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <a href="{% url 'hotel_detail' hotel.slug %}" class="hotelsCard -type-1 ">
+                          <div class="hotelsCard__image">
+                            <div class="cardImage ratio ratio-1:1">
+                              <div class="cardImage__content">
+                                {# Example image #}
+                                {% if hotel.main_image %}
+                                  <img class="rounded-4 col-12" src="{{ hotel.main_image.url }}" alt="{{ hotel.name }}">
+                                {% else %}
+                                  <img class="rounded-4 col-12" src="path/to/placeholder.jpg" alt="{{ hotel.name }}">
+                                {% endif %}
+                              </div>
+
+                              {# Wishlist Button #}
+                              <div class="cardImage__wishlist">
+                                <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
+                                  <i class="icon-heart text-12"></i>
+                                </button>
+                              </div>
+
+                              {# Example badge if you want to show breakfast included or rating #}
+                              {% if hotel.rating and hotel.rating > 0 %}
+                                <div class="cardImage__leftBadge">
+                                  <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
+                                    {{ hotel.rating }} rating
+                                  </div>
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+
+                          <div class="hotelsCard__content mt-10">
+                            <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                              <span>{{ hotel.name }}</span>
+                            </h4>
+
+                            <p class="text-light-1 lh-14 text-14 mt-5">
+                              {{ hotel.address }}
+                            </p>
+
+                            <div class="d-flex items-center mt-20">
+                              <!-- Example rating block -->
+                              <div class="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">
+                                {{ hotel.rating }}
+                              </div>
+                              <div class="text-14 text-dark-1 fw-500 ml-10">
+                                {{ hotel.rating|floatformat:1 }} / 5.0
+                              </div>
+<!--                              <div class="text-14 text-light-1 ml-10">some reviews</div>-->
+                            </div>
+
+<!--                            <div class="mt-5">-->
+<!--                              <div class="fw-500">-->
+<!--                                Starting from <span class="text-blue-1">US$72</span>-->
+<!--                              </div>-->
+<!--                            </div>-->
+                          </div>
+                        </a>
+                      </div>
+                    {% endfor %}
+
+                  </div>
+
+                </div>
+              {% endfor %}
+
+            </div>
+        </div>
+      </div>
+    </section>
+
+
+      {% if holiday %}
+        <section class="section-bg layout-pt-xl layout-pb-xl">
+          <div data-anim="fade delay-1" class="section-bg__item -mx-20" data-parallax="0.7">
+            <div data-parallax-target>
+              <img src="https://images.unsplash.com/photo-1720593445198-f27b3ca8b4e0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">
+            </div>
+          </div>
+
+          <div class="container">
+            <div data-anim="fade delay-3" class="row justify-center text-center">
+              <div class="col-auto">
+                <div class="text-white mb-10">{{holiday.title}}</div>
+                <h2 class="text-40 text-white">Get Amazing Rates at Stardaze Travels</h2>
+
+                <div class="d-inline-block mt-30">
+                  <a href="#" class="button -md -blue-1 bg-white text-dark-1">Find Deals</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      {% endif %}
+
+    {% if activities %}
+    <section class="layout-pt-md layout-pb-md">
+      <div class="container">
+        <div class="row justify-center text-center">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Adventure &amp; Activity</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="row y-gap-30 pt-40 sm:pt-20">
+          {% for activity in activities %}
+              <div class="col-xl col-md-4 col-sm-6">
+                <a href="#" class="tourTypeCard -type-1 d-block rounded-4 bg-white border-light rounded-4">
+                  <div class="tourTypeCard__content text-center pt-60 pb-24 px-30">
+                    <i class="icon-camping text-60 sm:text-40 text-blue-1"></i>
+                    <h4 class="text-dark-1 text-18 fw-500 mt-50 md:mt-30">{{activity.name}}</h4>
+                    <p class="text-light-1 lh-14 text-14 mt-5">{{activity.short_description}}</p>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="layout-pt-lg layout-pb-md">
+      <div data-anim-wrap class="container">
+        <div data-anim-child="slide-up delay-1" class="row justify-center text-center">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Fuel your wanderlust for the journey ahead.</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-grid-1 pt-40">
+
+          <div data-anim-child="slide-up delay-2">
+
+            <a href="#" class="blogCard -type-3 ">
+              <div class="blogCard__image rounded-4">
+                <img class="rounded-4 js-lazy" src="#"
+                     data-src="https://images.unsplash.com/photo-1676441019594-07142b925bc2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">
+              </div>
+
+              <div class="blogCard__content px-50 pb-30 lg:px-20 pb-20">
+                <h4 class="text-26 lg:text-18 fw-600 lh-16 text-white">Top Ski destinations you should visit this winter</h4>
+                <div class="text-15 lh-14 text-white mt-10">April 06, 2025</div>
+              </div>
+            </a>
+
+          </div>
+
+          <div data-anim-child="slide-up delay-3">
+
+            <a href="#" class="blogCard -type-3 ">
+              <div class="blogCard__image rounded-4">
+                <img class="rounded-4 js-lazy" src="#" data-src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">
+              </div>
+
+              <div class="blogCard__content px-20 pb-20">
+                <h4 class="text-18 fw-500 lh-16 text-white">Where can I go? 5 amazing places in kashmir that are open right now</h4>
+                <div class="text-15 lh-14 text-white mt-10">April 06, 2024</div>
+              </div>
+            </a>
+
+          </div>
+
+          <div data-anim-child="slide-up delay-4">
+
+            <a href="#" class="blogCard -type-3 ">
+              <div class="blogCard__image rounded-4">
+                <img class="rounded-4 js-lazy" src="#" data-src="https://plus.unsplash.com/premium_photo-1661856452176-d919ec23494a?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">
+              </div>
+
+              <div class="blogCard__content px-20 pb-20">
+                <h4 class="text-18 fw-500 lh-16 text-white">Booking travel during winters: good advice in an uncertain time</h4>
+                <div class="text-15 lh-14 text-white mt-10">April 06, 2024</div>
+              </div>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    {% block newsletter %}
+          {% include  'newsletter.html' %}
+    {% endblock %}
+{% endblock %}

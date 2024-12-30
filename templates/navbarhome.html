@@ -1,0 +1,217 @@
+{% load static %}
+<header data-add-bg="bg-white" class="header  js-header" data-x="header" data-x-toggle="is-menu-opened">
+      <div data-anim="fade" class="header__container header__container-1500 mx-auto px-30 sm:px-20">
+        <div class="row justify-between items-center" style="justify-content: space-around ! important;">
+
+          <div class="col-md-8">
+            <div class="d-flex items-center">
+              <a href="{% url 'homepage' %}" class="header-logo mr-50" data-x="header-logo" data-x-toggle="is-logo-dark">
+                <img src="{% static 'img/general/logo.png' %}" alt="logo icon">
+                <img src="{% static 'img/general/logo.png' %}" alt="logo icon">
+              </a>
+
+
+              <div class="header-menu" data-x="mobile-menu" data-x-toggle="is-menu-active">
+                <div class="mobile-overlay"></div>
+
+                <div class="header-menu__content">
+                  <div class="mobile-bg js-mobile-bg"></div>
+
+                  <div class="menu js-navList">
+                    <ul class="menu__nav text-light-2 -is-active">
+
+
+                      <li class="menu-item-has-children -has-mega-menu">
+                        <a data-barba href="#">
+                          <span class="mr-10">Destinations</span>
+                          <i class="icon icon-chevron-sm-down"></i>
+                        </a>
+
+                      <div class="mega">
+                        <div class="tabs -underline-2 js-tabs">
+                          <div class="tabs__controls row x-gap-40 y-gap-10 lg:x-gap-20 pb-30 js-tabs-controls">
+
+                            {% for category in destinations_categories %}
+                              <div class="col-auto">
+                                <button class="tabs__button text-light-1 fw-500 js-tabs-button {% if forloop.first %}is-tab-el-active{% endif %}" data-tab-target=".-tab-item-{{ forloop.counter }}">{{ category.name }}</button>
+                              </div>
+                            {% endfor %}
+
+                          </div>
+
+                          <div class="tabs__content js-tabs-content">
+                            {% for category in destinations_categories %}
+                              <div class="tabs__pane -tab-item-{{ forloop.counter }} {% if forloop.first %}is-tab-el-active{% endif %}">
+                                <div class="mega__content">
+                                  <div class="mega__grid">
+
+                                    <!-- Destinations -->
+                                    <div class="mega__item">
+                                      <div class="text-15 fw-500">Destinations</div>
+                                      <div class="y-gap-5 text-15 pt-5">
+                                        {% for destination in category.destinations.all %}
+                                          <div><a href="#">{{ destination.name }}</a></div>
+                                        {% empty %}
+                                          <div>No destinations available.</div>
+                                        {% endfor %}
+                                      </div>
+                                    </div>
+
+                                    <!-- Hotels -->
+                                    <div class="mega__item">
+                                      <div class="text-15 fw-500">Hotels</div>
+                                      <div class="y-gap-5 text-15 pt-5">
+                                        {% for hotel in category.hotels.all %}
+                                          <div>
+                                            <a href="#">{{ hotel.name }}</a>
+                                          </div>
+                                          <br>
+                                        {% empty %}
+                                          <div>No hotels available.</div>
+                                        {% endfor %}
+                                      </div>
+                                    </div>
+
+                                    <!-- Activities -->
+                                    <div class="mega__item">
+                                      <div class="text-15 fw-500">Activities</div>
+                                      <div class="y-gap-5 text-15 pt-5">
+                                        {% for activity in category.activities.all %}
+                                          <div><a href="#">{{ activity.name }}</a></div>
+                                        {% empty %}
+                                          <div>No activities available.</div>
+                                        {% endfor %}
+                                      </div>
+                                    </div>
+
+                                  </div>
+
+                                </div>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+
+
+                        <ul class="subnav mega-mobile">
+                            <li class="subnav__backBtn js-nav-list-back">
+                                <a href="#"><i class="icon icon-chevron-sm-down"></i> Category</a>
+                            </li>
+
+                            {% for category in destinations_categories %}
+                            <li class="menu-item-has-children">
+                                <a data-barba href="#">
+                                    <span class="mr-10">{{ category.name }}</span>
+                                    <i class="icon icon-chevron-sm-down"></i>
+                                </a>
+
+                                <ul class="subnav">
+                                    <li class="subnav__backBtn js-nav-list-back">
+                                        <a href="#"><i class="icon icon-chevron-sm-down"></i> {{ category.name }}</a>
+                                    </li>
+
+                                    {% if category.destinations.all %}
+                                    <li>
+                                        <ul>
+                                            {% for destination in category.destinations.all %}
+                                            <li><a href="{% url 'DestinationDetailView' destination.slug %}">{{ destination.name }}</a></li> {# Replace with your URL pattern #}
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if category.hotels.all %}
+                                    <li>
+                                        <ul>
+                                            {% for hotel in category.hotels.all %}
+                                            <li><a href="{% url 'hotel_detail' hotel.slug %}">{{ hotel.name }}</a></li> {# Replace with your URL pattern #}
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if category.activities.all %}
+                                    <li>
+                                        <span class="subnav__title">Activities</span>
+                                        <ul>
+                                            {% for activity in category.activities.all %}
+                                            <li><a href="#">{{ activity.name }}</a></li> {# Replace with your URL pattern #}
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                      </li>
+
+
+
+                      <li class="menu-item-has-children">
+                        <a data-barba href="#">
+                          <span class="mr-10">Packages</span>
+                          <i class="icon icon-chevron-sm-down"></i>
+                        </a>
+
+                        <ul class="subnav">
+                          <li class="subnav__backBtn js-nav-list-back">
+                            <a href="#"><i class="icon icon-chevron-sm-down"></i> packages</a>
+                          </li>
+                          <li><a href="#">Kashmir Couple Tour Packages From Ahmedabad</a></li>
+                          <li><a href="#">Kashmir Honeymoon Tour Packages</a></li>
+                          <li><a href="#">Kashmir Family Tour Package</a></li>
+                        </ul>
+                      </li>
+                        <li class="menu-item-has-children">
+                        <a data-barba href="#">
+                          <span class="mr-10">Activities</span>
+                          <i class="icon icon-chevron-sm-down"></i>
+                        </a>
+
+                        <ul class="subnav">
+                          <li class="subnav__backBtn js-nav-list-back">
+                            <a href="#"><i class="icon icon-chevron-sm-down"></i> activities</a>
+                          </li>
+                          <li><a href="#">Sking</a></li>
+                          <li><a href="#">Shikara Ride</a></li>
+                          <li><a href="#">Gulmarg Gondola</a></li>
+                          <li><a href="#">Shopping</a></li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a href="{% url 'contactpage' %}">Contact</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="mobile-footer px-20 py-20 border-top-light js-mobile-footer">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="col-auto">
+            <div class="d-flex items-center">
+
+              <div class="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
+                <a href="{% url 'contactpage' %}" class="button px-30 fw-400 text-14 border-dark-4 -blue-1 h-50 text-dark-4 ml-20">Get Quote</a>
+              </div>
+
+              <div class="d-none xl:d-flex x-gap-20-mobile items-center pl-30" data-x="header-mobile-icons" data-x-toggle="text-white">
+                <div><button class="d-flex items-center icon-menu text-20" data-x-click="html, header, header-logo, header-mobile-icons, mobile-menu"></button></div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
