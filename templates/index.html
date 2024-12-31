@@ -443,7 +443,7 @@
 
               {% for cat in destinations_categories %}
                 <!-- Each pane corresponds to each category -->
-                <div class="tabs__pane -tab-item-{{ forloop.counter }} {% if forloop.first %}is-tab-el-active{% endif %}">
+                <div class="tabs__pane -tab-item-{{ cat.slug }} {% if forloop.first %}is-tab-el-active{% endif %}">
                   <div class="row y-gap-30">
 
                     {# Loop over all hotels in this category #}
