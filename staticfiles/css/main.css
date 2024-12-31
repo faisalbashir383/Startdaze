@@ -3772,7 +3772,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .header .header-menu .menu .subnav a {
     height: 40px;
-    font-size: 18px;
+    font-size: 14px;
     padding: 0 20px;
     transform: translateY(100%);
   }
