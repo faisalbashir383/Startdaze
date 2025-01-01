@@ -1,5 +1,5 @@
 from django.contrib import admin
-from engine.models import HomepageSliders, DestinationCategory, Destination, Hotel, TeamMember
+from engine.models import HomepageSliders, DestinationCategory, Destination, Hotel, TeamMember, DestinationImage
 
 
 class HomepageSlidersAdmin(admin.ModelAdmin):
@@ -23,9 +23,9 @@ class DestinationAdmin(admin.ModelAdmin):
 
 class HotelAdmin(admin.ModelAdmin):
     list_display = (
-        "name", "slug", "category", "rating", "is_active"
+        "name", "slug", "destination", "category", "rating", "is_active"
     )
-    list_filter = ("is_active", "category")
+    list_filter = ("is_active", "category", "destination")
     search_fields = ("name",)
 
 
@@ -35,8 +35,14 @@ class TeamMemberAdmin(admin.ModelAdmin):
     )
 
 
+class DestinationImageAdmin(admin.ModelAdmin):
+    list_display = ("destination", "order", "is_featured")
+    list_filter = ("destination", "is_featured")
+
+
 admin.site.register(HomepageSliders, HomepageSlidersAdmin)
 admin.site.register(DestinationCategory, DestinationCategoryAdmin)
 admin.site.register(Destination, DestinationAdmin)
+admin.site.register(DestinationImage, DestinationImageAdmin)
 admin.site.register(Hotel, HotelAdmin)
 admin.site.register(TeamMember, TeamMemberAdmin)

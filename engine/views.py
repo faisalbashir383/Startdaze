@@ -37,8 +37,12 @@ def PrivacyPage(request):
 def DestinationDetailView(request, slug):
     try:
         destination = Destination.objects.get(slug=slug)
+        related_destinations = Destination.objects.filter(
+            categories__in=destination.categories.all()
+        ).exclude(id=destination.id).distinct()
         return render(request, 'destination_detail.html', context={
-            "destination": destination
+            "destination": destination,
+            "related_destinations": related_destinations
         })
     except Exception as e:
         return HttpResponse(str(e))

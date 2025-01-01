@@ -336,6 +336,7 @@ class PackageImage(models.Model):
 
 
 class Hotel(models.Model):
+    destination = models.ForeignKey(Destination, related_name="destination_hotels", null=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=220, unique=True, blank=True)
     category = models.ForeignKey(DestinationCategory, related_name='hotels', on_delete=models.CASCADE)
