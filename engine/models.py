@@ -255,10 +255,6 @@ class Package(models.Model):
     )
 
     # Itinerary & Details
-    itinerary = RichTextField(
-        blank=True,
-        help_text="Detailed day-by-day breakdown of activities."
-    )
     included = RichTextField(
         blank=True,
         help_text="List what's included (meals, accommodation, etc.)."
