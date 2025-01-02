@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from engine.models import DestinationCategory, HomepageSliders, Destination, Activity, TeamMember
+from engine.models import DestinationCategory, HomepageSliders, Destination, Activity, TeamMember, Package
 
 
 def Homepage(request):
@@ -15,7 +15,8 @@ def Homepage(request):
         "destinations_categories": categories,
         "sliders": HomepageSliders.objects.filter(is_active=True),
         "top_destinations": Destination.objects.filter(is_active=True).order_by('-total_trips')[:6],
-        "activities": Activity.objects.all()
+        "activities": Activity.objects.all(),
+        "packages": Package.objects.all()
     })
 
 
@@ -50,3 +51,16 @@ def DestinationDetailView(request, slug):
 
 def HotelDetailView(request, slug):
     return HttpResponse("Page Not Available please try after few days")
+
+
+def PackageDetailView(request, slug):
+    try:
+        package = Package.objects.get(slug=slug)
+        return render(
+            request, "package_detail_view.html",
+            context={
+                "package": package
+            }
+        )
+    except Exception as e:
+        return HttpResponse(str(e))

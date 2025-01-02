@@ -200,7 +200,7 @@ class Package(models.Model):
         blank=True,
         help_text="A concise marketing description."
     )
-    description = models.TextField(
+    description = RichTextField(
         blank=True,
         help_text="Detailed description of the package."
     )
@@ -220,6 +220,12 @@ class Package(models.Model):
         decimal_places=2,
         help_text="Base price per person or per package."
     )
+    # Pricing & Currency
+    discount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text="Base price per person or per package."
+    )
     currency = models.CharField(
         max_length=10,
         default='USD',
@@ -227,7 +233,12 @@ class Package(models.Model):
     )
 
     # Schedule & Duration
-    duration_days = models.PositiveIntegerField(
+    days = models.PositiveIntegerField(
+        blank=True,
+        null=True,
+        help_text="Duration of the trip in days."
+    )
+    nights = models.PositiveIntegerField(
         blank=True,
         null=True,
         help_text="Duration of the trip in days."
@@ -244,11 +255,11 @@ class Package(models.Model):
     )
 
     # Itinerary & Details
-    itinerary = models.TextField(
+    itinerary = RichTextField(
         blank=True,
         help_text="Detailed day-by-day breakdown of activities."
     )
-    included = models.TextField(
+    included = RichTextField(
         blank=True,
         help_text="List what's included (meals, accommodation, etc.)."
     )
@@ -320,6 +331,23 @@ class Package(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class PackageItinerary(models.Model):
+    package = models.ForeignKey(Package, related_name='itineraries', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    short_description = models.TextField(null=True)
+    description = RichTextField(
+        help_text="Detailed day-by-day breakdown of activities."
+    )
+    image = models.ImageField(upload_to='packages/itineraries')
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Package Itinerary"
+        verbose_name_plural = "Package Itineraries"
 
 
 class PackageImage(models.Model):

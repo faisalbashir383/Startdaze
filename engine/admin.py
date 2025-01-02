@@ -1,5 +1,6 @@
 from django.contrib import admin
-from engine.models import HomepageSliders, DestinationCategory, Destination, Hotel, TeamMember, DestinationImage
+from engine.models import (HomepageSliders, DestinationCategory, Destination, Hotel, TeamMember,
+                           DestinationImage, Package, PackageImage, PackageItinerary)
 
 
 class HomepageSlidersAdmin(admin.ModelAdmin):
@@ -40,9 +41,27 @@ class DestinationImageAdmin(admin.ModelAdmin):
     list_filter = ("destination", "is_featured")
 
 
+class PackageAdmin(admin.ModelAdmin):
+    list_display = ("name", "price", "tags", "created_at")
+
+
+class PackageImageAdmin(admin.ModelAdmin):
+    list_display = ("package", "caption", "order")
+    list_filter = ("package",)
+
+
+class PackageItineraryAdmin(admin.ModelAdmin):
+    list_display = ("package", "title", "short_description", "created_at", "updated_at")
+    list_display = ("package",)
+    search_fields = ("title", "description")
+
+
 admin.site.register(HomepageSliders, HomepageSlidersAdmin)
 admin.site.register(DestinationCategory, DestinationCategoryAdmin)
 admin.site.register(Destination, DestinationAdmin)
 admin.site.register(DestinationImage, DestinationImageAdmin)
 admin.site.register(Hotel, HotelAdmin)
 admin.site.register(TeamMember, TeamMemberAdmin)
+admin.site.register(Package, PackageAdmin)
+admin.site.register(PackageImage, PackageImageAdmin)
+admin.site.register(PackageItinerary, PackageItineraryAdmin)

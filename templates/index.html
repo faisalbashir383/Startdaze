@@ -208,65 +208,147 @@
     </section>
 
     <br><br>
-    <section class="layout-pt-lg layout-pb-md">
-      <div class="container">
-        <div class="row y-gap-30 justify-between items-center">
-          <div class="col-xl-5 col-lg-6">
-            <h2 class="text-30 fw-600">Stardaze Tour & Travel: Your Gateway to Unforgettable Journeys</h2>
-            <p class="mt-40 lg:mt-20">
-              At Stardaze, we believe every journey should be an adventure—an opportunity to discover new places,
-              connect with diverse cultures, and create lasting memories. As a world-leading tour and travel
-              company, our mission is to make your travel dreams a reality by offering unparalleled service,
-              personalized itineraries, and a commitment to sustainability.
-            </p>
 
-            <div class="d-inline-block mt-40 lg:mt-20">
-
-              <a href="{% url 'aboutPage' %}" class="button -md -blue-1 bg-dark-1 text-white">
-                Learn More <div class="icon-arrow-top-right ml-15"></div>
-              </a>
-
+  <section class="layout-pt-lg layout-pb-lg">
+      <div data-anim-wrap class="container">
+        <div data-anim-child="slide-up" class="row justify-between items-end">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Our Packages</h2>
             </div>
           </div>
 
-          <div class="col-xl-5 col-lg-6">
-            <div class="shadow-4">
-              <div class="row border-center">
+          <div class="col-auto">
 
-                <div class="col-sm-6">
-                  <div class="py-60 sm:py-30 text-center">
-                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">30+</div>
-                    <div class="text-14 lh-14 text-light-1 mt-10">Destinations</div>
-                  </div>
-                </div>
+            <a href="#" class="button -md -blue-1 bg-blue-1-05 text-blue-1">
+              More <div class="icon-arrow-top-right ml-15"></div>
+            </a>
 
-                <div class="col-sm-6">
-                  <div class="py-60 sm:py-30 text-center">
-                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">20+</div>
-                    <div class="text-14 lh-14 text-light-1 mt-10">Activities</div>
-                  </div>
-                </div>
+          </div>
+        </div>
 
-                <div class="col-sm-6">
-                  <div class="py-60 sm:py-30 text-center">
-                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">1k+</div>
-                    <div class="text-14 lh-14 text-light-1 mt-10">Happy customers</div>
-                  </div>
-                </div>
+        <div class="relative">
+          <div class="overflow-hidden mt-40 sm:mt-20 js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-1" data-nav-prev="js-routes-slider-prev" data-nav-next="js-routes-slider-next">
+            <div class="swiper-wrapper">
+              {% for package in packages %}
+              <div data-anim-child="slide-up delay-1" class="swiper-slide">
 
-                <div class="col-sm-6">
-                  <div class="py-60 sm:py-30 text-center">
-                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">100+</div>
-                    <div class="text-14 lh-14 text-light-1 mt-10">Hotels</div>
+                <a href="{% url 'package_detail' package.slug %}" class="rentalCard -type-2 ">
+                  <div class="rentalCard__image">
+                    <div class="cardImage ratio ratio-6:5">
+                      <div class="cardImage__content">
+                        <img class="rounded-4 col-12" src="{{package.main_image.url}}" alt="image">
+                      </div>
+                        <div class="cardImage__wishlist">
+                            <button class="rating_button button -blue-1 bg-white size-30 rounded-full shadow-2">
+                              {{package.average_rating|floatformat:1}}
+                            </button>
+                        </div>
+                        <div class="cardImage__leftBadge">
+                          <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
+                                {{package.nights}} Night / {{package.days}} Days
+                          </div>
+                        </div>
+                    </div>
                   </div>
-                </div>
+
+                  <div class="rentalCard__content mt-10">
+                    <h4 class="rentalCard__title text-dark-1 text-18 lh-16 fw-500">
+                      <span>{{package.name}}</span>
+                    </h4>
+
+                    <div class="d-flex items-center text-light-1">
+                      <div class="text-14">{{package.short_description}}</div>
+                    </div>
+
+                    <div class="text-light-1 mt-5">
+                      <span class="fw-500 text-dark-1">
+                        <span class="discounted-price">{{package.currency }} {{package.discount}} /Person</span>
+                        <span class="original-price">{{package.currency }} {{package.price}}/</span>
+                      </span>
+                      <div class="inc-taxes">Inc. Taxes</div>
+                    </div>
+                  </div>
+                </a>
 
               </div>
+              {% endfor %}
             </div>
           </div>
+
+
+          <button class="section-slider-nav -prev flex-center button -blue-1 bg-white text-dark-1 size-40 rounded-full shadow-1  js-routes-slider-prev">
+            <i class="icon icon-chevron-left text-12"></i>
+          </button>
+
+          <button class="section-slider-nav -next flex-center button -blue-1 bg-white text-dark-1 size-40 rounded-full shadow-1  js-routes-slider-next">
+            <i class="icon icon-chevron-right text-12"></i>
+          </button>
+
         </div>
       </div>
     </section>
+
+
+<!--    <section class="layout-pt-lg layout-pb-md">-->
+<!--      <div class="container">-->
+<!--        <div class="row y-gap-30 justify-between items-center">-->
+<!--          <div class="col-xl-5 col-lg-6">-->
+<!--            <h2 class="text-30 fw-600">Stardaze Tour & Travel: Your Gateway to Unforgettable Journeys</h2>-->
+<!--            <p class="mt-40 lg:mt-20">-->
+<!--              At Stardaze, we believe every journey should be an adventure—an opportunity to discover new places,-->
+<!--              connect with diverse cultures, and create lasting memories. As a world-leading tour and travel-->
+<!--              company, our mission is to make your travel dreams a reality by offering unparalleled service,-->
+<!--              personalized itineraries, and a commitment to sustainability.-->
+<!--            </p>-->
+
+<!--            <div class="d-inline-block mt-40 lg:mt-20">-->
+
+<!--              <a href="{% url 'aboutPage' %}" class="button -md -blue-1 bg-dark-1 text-white">-->
+<!--                Learn More <div class="icon-arrow-top-right ml-15"></div>-->
+<!--              </a>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="col-xl-5 col-lg-6">-->
+<!--            <div class="shadow-4">-->
+<!--              <div class="row border-center">-->
+
+<!--                <div class="col-sm-6">-->
+<!--                  <div class="py-60 sm:py-30 text-center">-->
+<!--                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">30+</div>-->
+<!--                    <div class="text-14 lh-14 text-light-1 mt-10">Destinations</div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-sm-6">-->
+<!--                  <div class="py-60 sm:py-30 text-center">-->
+<!--                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">20+</div>-->
+<!--                    <div class="text-14 lh-14 text-light-1 mt-10">Activities</div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-sm-6">-->
+<!--                  <div class="py-60 sm:py-30 text-center">-->
+<!--                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">1k+</div>-->
+<!--                    <div class="text-14 lh-14 text-light-1 mt-10">Happy customers</div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--                <div class="col-sm-6">-->
+<!--                  <div class="py-60 sm:py-30 text-center">-->
+<!--                    <div class="text-40 lg:text-30 lh-13 text-dark-1 fw-600">100+</div>-->
+<!--                    <div class="text-14 lh-14 text-light-1 mt-10">Hotels</div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
 
     <section class="layout-pt-md layout-pb-md">
       <div data-anim-wrap class="container">

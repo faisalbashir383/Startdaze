@@ -1,5 +1,6 @@
 from django.urls import path
-from engine.views import Homepage, ContactPage, AboutPage, PrivacyPage, DestinationDetailView, HotelDetailView
+from engine.views import Homepage, ContactPage, AboutPage, PrivacyPage, DestinationDetailView, HotelDetailView, \
+    PackageDetailView
 
 urlpatterns = [
     path("", Homepage, name="homepage"),
@@ -8,4 +9,5 @@ urlpatterns = [
     path("privacy/", PrivacyPage, name="PrivacyPage"),
     path("destination/<str:slug>/", DestinationDetailView, name="DestinationDetailView"),
     path("hotel/<str:slug>/", HotelDetailView, name="hotel_detail"),
+    path("package/<str:slug>/", PackageDetailView, name="package_detail"),
 ]
